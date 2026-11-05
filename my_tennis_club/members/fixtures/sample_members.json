@@ -1,0 +1,5 @@
+[
+  {"model": "members.member", "pk": 1, "fields": {"firstname": "Maria", "lastname": "Gonzalez", "phone": "555-0101", "joined_date": "2022-03-14"}},
+  {"model": "members.member", "pk": 2, "fields": {"firstname": "Liam", "lastname": "Chen", "phone": "555-0102", "joined_date": "2023-06-01"}},
+  {"model": "members.member", "pk": 3, "fields": {"firstname": "Aisha", "lastname": "Khan", "phone": "", "joined_date": null}}
+]
