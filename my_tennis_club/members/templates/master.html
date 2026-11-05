@@ -1,12 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>{% block title %}{% endblock %}</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}My Tennis Club{% endblock %}</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 720px; margin: 2rem auto; padding: 0 1rem; color: #1d2733; }
+    nav a { margin-right: 1rem; color: #0a7d3c; text-decoration: none; font-weight: 600; }
+    nav { border-bottom: 1px solid #dde3ea; padding-bottom: .75rem; margin-bottom: 1.5rem; }
+    li { margin: .35rem 0; } input[type=search] { padding: .4rem; } .muted { color: #6b7785; }
+  </style>
 </head>
 <body>
-
-{% block content %}
-{% endblock %}
-
+  <nav><a href="{% url 'main' %}">🎾 Home</a><a href="{% url 'members' %}">Members</a></nav>
+  {% block content %}{% endblock %}
 </body>
 </html>

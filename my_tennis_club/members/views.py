@@ -1,30 +1,19 @@
-from django.http import HttpResponse
-from django.template import loader
-from .models import members as mb
+from django.shortcuts import get_object_or_404, render
+
+from .models import Member
+
+
+def main(request):
+    return render(request, "main.html", {"member_count": Member.objects.count()})
+
 
 def members(request):
-  mymembers = mb.objects.all().values()
-  template = loader.get_template('all_members.html')
-  context = {
-    'mymembers': mymembers,
-  }
-  return HttpResponse(template.render(context, request))
-  
-def details(request, id):
-  mymember = mb.objects.get(id=id)
-  template = loader.get_template('details.html')
-  context = {
-    'mymember': mymember,
-  }
-  return HttpResponse(template.render(context, request))
-  
-def main(request):
-  template = loader.get_template('main.html')
-  return HttpResponse(template.render())
+    query = request.GET.get("q", "").strip()
+    queryset = Member.objects.all()
+    if query:
+        queryset = queryset.filter(firstname__icontains=query) | queryset.filter(lastname__icontains=query)
+    return render(request, "all_members.html", {"mymembers": queryset, "query": query})
 
-def testing(request):
-  template = loader.get_template('template.html')
-  context = {
-    'fruits': ['Apple', 'Banana', 'Cherry'],   
-  }
-  return HttpResponse(template.render(context, request))
+
+def details(request, id):
+    return render(request, "details.html", {"mymember": get_object_or_404(Member, id=id)})

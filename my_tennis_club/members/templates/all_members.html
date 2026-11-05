@@ -1,19 +1,16 @@
 {% extends "master.html" %}
-
-{% block title %}
-  My Tennis Club - List of all members
-{% endblock %}
-
-
+{% block title %}My Tennis Club - Members{% endblock %}
 {% block content %}
-
-  <p><a href="/">HOME</a></p>
-
   <h1>Members</h1>
-  
+  <form method="get">
+    <input type="search" name="q" value="{{ query }}" placeholder="Search by name">
+    <button type="submit">Search</button>
+  </form>
   <ul>
-    {% for x in mymembers %}
-      <li><a href="details/{{ x.id }}">{{ x.firstname }} {{ x.lastname }}</a></li>
+    {% for member in mymembers %}
+      <li><a href="{% url 'details' member.id %}">{{ member.fullname }}</a></li>
+    {% empty %}
+      <li class="muted">No members found.</li>
     {% endfor %}
   </ul>
 {% endblock %}
