@@ -30,6 +30,11 @@ python manage.py runserver
 ```
 Open <http://127.0.0.1:8000/> (admin at `/admin/`).
 
+## Deploy for free
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/akurapati1/DjangoApplicationPractice)
+
+The included `render.yaml` + `build.sh` deploy the app on Render's **free** plan (sign in with GitHub, no card): gunicorn serves the app, WhiteNoise serves static files, the secret key is generated, `DEBUG` is off, and the demo members are loaded on each deploy. Free services sleep when idle and use an ephemeral SQLite file, so data added through the admin resets on redeploy - use a managed Postgres (e.g. Neon free) and `dj-database-url` if you need persistence.
+
 ## Tests
 ```bash
 python manage.py test
